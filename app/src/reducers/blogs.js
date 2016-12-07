@@ -20,10 +20,10 @@ const blogs = (state = [], action) => {
         ...state,
         blog(undefined, action)
       ]
-    case 'DELETE_ITEM':
+    case 'DELETE_BLOG':
       return [
-        ...state.slice(0, action.id),
-        ...state.slice(action.id + 1)
+        ...state.slice(0, action.index),
+        ...state.slice(action.index + 1)
       ]
     default:
       return state

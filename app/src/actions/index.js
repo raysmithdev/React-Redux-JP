@@ -8,3 +8,10 @@ export const addBlog = (title, content) => {
     id: id++
   }
 }
+
+export const deleteBlog = (index) => {
+  return {
+    type: 'DELETE_BLOG',
+    index
+  }
+}
