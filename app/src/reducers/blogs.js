@@ -1,24 +1,8 @@
-const blog = (state = {}, action) => {
-  switch (action.type) {
-    case 'ADD_BLOG':
-      return {
-        id: action.id,
-        title: action.title,
-        content: action.content,
-        createdAt: Date.now()
-      }
-    default:
-      return state
-  }
-}
-
-
 const blogs = (state = [], action) => {
   switch (action.type) {
-    case 'ADD_BLOG':
+    case 'RECEIVE_DATA':
       return [
-        ...state,
-        blog(undefined, action)
+        ...action.blogs
       ]
     case 'DELETE_BLOG':
       return [

@@ -1,11 +1,26 @@
-let id = 1
+import fetch from 'isomorphic-fetch'
 
-export const addBlog = (title, content) => {
+const receiveData = (blogs) => {
   return {
-    type: 'ADD_BLOG',
-    title,
-    content,
-    id: id++
+    type: 'RECEIVE_DATA',
+    blogs
+  }
+}
+
+export const addBlog = (title, content) =>  {
+  return dispatch => {
+    return fetch('http://localhost:8080/create-blog', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                title,
+                content
+              })
+            })
+            .then(response => response.json())
+            .then(blogs => dispatch(receiveData(blogs)) )
   }
 }
 
